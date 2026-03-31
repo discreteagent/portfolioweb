@@ -48,11 +48,9 @@
       border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
-      justify-content: space-between;
       padding: 0 2rem;
       height: 60px;
       gap: 1rem;
-      flex-wrap: wrap;
     }
 
     nav .brand {
@@ -61,20 +59,15 @@
       color: var(--text);
       text-decoration: none;
       white-space: nowrap;
-    }
-
-    nav .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
+      flex: 1;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 1.4rem;
-      flex-wrap: wrap;
+      gap: 1.6rem;
+      flex: 1;
+      justify-content: center;
     }
 
     nav ul a {
@@ -87,30 +80,40 @@
 
     nav ul a:hover { color: var(--accent); }
 
-    /* ── Language switcher ── */
-    .lang-switcher {
+    /* ── Language dropdown ── */
+    .lang-wrap {
+      flex: 1;
       display: flex;
-      gap: 5px;
-      flex-shrink: 0;
+      justify-content: flex-end;
     }
 
-    .lang-btn {
-      background: none;
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 3px 9px;
-      font-size: .75rem;
+      border-radius: 6px;
+      color: var(--text);
       font-family: inherit;
+      font-size: .85rem;
+      font-weight: 600;
+      padding: 5px 28px 5px 12px;
       cursor: pointer;
-      color: var(--muted);
-      transition: background .15s, color .15s, border-color .15s;
+      outline: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%238b949e' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      transition: border-color .2s;
     }
 
-    .lang-btn.active,
-    .lang-btn:hover {
-      background: var(--accent);
+    .lang-select:hover,
+    .lang-select:focus {
       border-color: var(--accent);
-      color: #fff;
+    }
+
+    .lang-select option {
+      background: #1a2233;
+      color: var(--text);
     }
 
     /* ── LAYOUT ── */
@@ -196,22 +199,6 @@
       color: #cdd9e5;
       max-width: 680px;
       line-height: 1.8;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-      margin-top: 1.2rem;
-    }
-
-    .tag {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: .78rem;
-      padding: .3rem .8rem;
-      border-radius: 20px;
     }
 
     /* ── SECTION ── */
@@ -384,13 +371,32 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 780px) {
-      nav { height: auto; padding: .6rem 1rem; }
-      nav .nav-right { width: 100%; justify-content: space-between; }
-      nav ul { gap: .8rem; }
+      nav {
+        height: auto;
+        padding: .7rem 1rem;
+        flex-wrap: wrap;
+        gap: .6rem;
+      }
+
+      nav .brand { flex: none; width: 100%; }
+
+      nav ul {
+        flex: none;
+        gap: .7rem;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        order: 3;
+        width: 100%;
+      }
+
+      .lang-wrap {
+        flex: none;
+        margin-left: auto;
+      }
+
       #bio { flex-direction: column; align-items: center; text-align: center; }
       .avatar { width: 100%; }
       .avatar-img { width: 200px; height: 200px; }
-      .tag-row { justify-content: center; }
       .tl-header { flex-direction: column; }
       .lang-grid { gap: 1.5rem; justify-content: center; }
     }
@@ -401,20 +407,20 @@
 <!-- NAV -->
 <nav>
   <a class="brand" href="#">Vsevolod Stepanov</a>
-  <div class="nav-right">
-    <ul>
-      <li><a href="#bio"        data-i18n="nav_bio">Bio</a></li>
-      <li><a href="#education"  data-i18n="nav_edu">Education</a></li>
-      <li><a href="#experience" data-i18n="nav_exp">Experience</a></li>
-      <li><a href="#languages"  data-i18n="nav_lang">Languages</a></li>
-      <li><a href="#skills"     data-i18n="nav_skills">Skills</a></li>
-      <li><a href="#contact"    data-i18n="nav_contact">Contact</a></li>
-    </ul>
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="setLang('en')">EN</button>
-      <button class="lang-btn"        onclick="setLang('de')">DE</button>
-      <button class="lang-btn"        onclick="setLang('cs')">CS</button>
-    </div>
+  <ul>
+    <li><a href="#bio"        data-i18n="nav_bio">Bio</a></li>
+    <li><a href="#education"  data-i18n="nav_edu">Education</a></li>
+    <li><a href="#experience" data-i18n="nav_exp">Experience</a></li>
+    <li><a href="#languages"  data-i18n="nav_lang">Languages</a></li>
+    <li><a href="#skills"     data-i18n="nav_skills">Skills</a></li>
+    <li><a href="#contact"    data-i18n="nav_contact">Contact</a></li>
+  </ul>
+  <div class="lang-wrap">
+    <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
+      <option value="en">EN</option>
+      <option value="de">DE</option>
+      <option value="cs">CS</option>
+    </select>
   </div>
 </nav>
 
@@ -446,7 +452,7 @@
 
   <!-- EDUCATION -->
   <section id="education">
-    <div class="section-title">📖 <span data-i18n="nav_edu">Education</span></div>
+    <div class="section-title">🎓 <span data-i18n="nav_edu">Education</span></div>
     <div class="edu-grid">
       <div class="edu-card">
         <div class="degree" data-i18n="edu1_degree">Bachelor in Business &amp; Economics</div>
@@ -456,7 +462,7 @@
       </div>
       <div class="edu-card">
         <div class="degree" data-i18n="edu2_degree">High School Diploma (AHS Matura)</div>
-        <div class="school">Austrian School Prague</div>
+        <div class="school" data-i18n="edu2_school">Austrian School Prague</div>
         <div class="dates">09/2014 – 06/2020</div>
         <div class="focus" data-i18n="edu2_focus">Specialization: History and Mathematics</div>
       </div>
@@ -498,7 +504,7 @@
           <div class="tl-title" data-i18n="exp3_title">Front Office Receptionist</div>
           <div class="tl-dates">12/2020 – 12/2022</div>
         </div>
-        <div class="tl-company">Hotel Anette, Prague</div>
+        <div class="tl-company" data-i18n="exp3_company">Hotel Anette, Prague</div>
         <ul class="tl-bullets">
           <li data-i18n="exp3_b1">Executed high-volume check-ins/outs, guest billing, and reservation management for an international clientele.</li>
           <li data-i18n="exp3_b2">Proficient use of Cloudbeds and Oracle OPERA for room inventory, guest profiles, and financial reporting.</li>
@@ -562,15 +568,15 @@
     <div class="skills-table">
       <div class="skill-row"><span class="skill-name">MS Excel</span><span class="skill-level advanced"    data-i18n="sl_advanced">Advanced</span></div>
       <div class="skill-row"><span class="skill-name">Cloudbeds</span><span class="skill-level proficient"  data-i18n="sl_proficient">Proficient</span></div>
-      <div class="skill-row"><span class="skill-name">Power BI</span><span class="skill-level basic"        data-i18n="sl_basic">Basic</span></div>
-      <div class="skill-row"><span class="skill-name">RStudio</span><span class="skill-level basic"         data-i18n="sl_basic">Basic</span></div>
-      <div class="skill-row"><span class="skill-name">SAP ERP</span><span class="skill-level basic"         data-i18n="sl_basic">Basic</span></div>
+      <div class="skill-row"><span class="skill-name">Power BI</span><span class="skill-level basic"        data-i18n="sl_basic_1">Basic</span></div>
+      <div class="skill-row"><span class="skill-name">RStudio</span><span class="skill-level basic"         data-i18n="sl_basic_2">Basic</span></div>
+      <div class="skill-row"><span class="skill-name">SAP ERP</span><span class="skill-level basic"         data-i18n="sl_basic_3">Basic</span></div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
-    <div class="section-title">💬 <span data-i18n="nav_contact">Contact</span></div>
+    <div class="section-title">📬 <span data-i18n="nav_contact">Contact</span></div>
     <ul class="contact-list">
       <li>
         <i class="fas fa-envelope"></i>
@@ -613,6 +619,7 @@ const translations = {
     edu1_degree: "Bachelor in Business & Economics",
     edu1_focus:  "Focus: Macrofinance and Economic Modeling",
     edu2_degree: "High School Diploma (AHS Matura)",
+    edu2_school: "Austrian School Prague",
     edu2_focus:  "Specialization: History and Mathematics",
 
     exp1_title: "Order Management Specialist",
@@ -624,7 +631,8 @@ const translations = {
     exp2_b1: "Handled high-volume customer inquiries, developing efficient problem-solving strategies in a fast-paced environment.",
     exp2_b2: "Ensured high satisfaction levels through meticulous attention to detail and adherence to company service standards.",
 
-    exp3_title: "Front Office Receptionist",
+    exp3_title:   "Front Office Receptionist",
+    exp3_company: "Hotel Anette, Prague",
     exp3_b1: "Executed high-volume check-ins/outs, guest billing, and reservation management for an international clientele.",
     exp3_b2: "Proficient use of Cloudbeds and Oracle OPERA for room inventory, guest profiles, and financial reporting.",
     exp3_b3: "Reconciled daily transactions (night audit) and managed lobby bar service & POS transactions.",
@@ -636,7 +644,9 @@ const translations = {
 
     sl_advanced:   "Advanced",
     sl_proficient: "Proficient",
-    sl_basic:      "Basic",
+    sl_basic_1:    "Basic",
+    sl_basic_2:    "Basic",
+    sl_basic_3:    "Basic",
 
     contact_location: "Vienna, Austria",
   },
@@ -644,33 +654,35 @@ const translations = {
   de: {
     nav_bio:     "Bio",
     nav_edu:     "Ausbildung",
-    nav_exp:     "Erfahrung",
+    nav_exp:     "Berufserfahrung",
     nav_lang:    "Sprachen",
-    nav_skills:  "Fähigkeiten",
+    nav_skills:  "Technische Kenntnisse",
     nav_contact: "Kontakt",
 
-    role:        "Student der Wirtschaftswissenschaften",
+    role:        "Student der Betriebswirtschaft & Volkswirtschaft",
     bio_heading: "Professionelles Profil",
-    bio_text:    "Bachelorstudent an der WU Wien mit über 2 Jahren praktischer Erfahrung in multinationalen Unternehmensumgebungen. Sehr interessiert an Finanzmodellierung, Statistik und quantitativer Finanzwirtschaft. Nachgewiesene Erfolgsbilanz in der Prozessautomatisierung und im Management komplexer B2B-Abläufe mit hoher Präzision.",
+    bio_text:    "Bachelorstudent an der Wirtschaftsuniversität Wien mit über 2 Jahren Praxiserfahrung in multinationalen Konzernumgebungen. Starkes Interesse an Finanzmodellierung, Statistik und quantitativer Finanzwirtschaft. Nachgewiesene Erfolge in der Prozessautomatisierung und der präzisen Abwicklung komplexer B2B-Operationen.",
 
-    edu1_degree: "Bachelor in Wirtschaft & Volkswirtschaft",
-    edu1_focus:  "Schwerpunkt: Makrofinanzen und Wirtschaftsmodellierung",
-    edu2_degree: "Abitur (AHS Matura)",
+    edu1_degree: "Bachelor in Business & Economics",
+    edu1_focus:  "Schwerpunkt: Makrofinanzen und ökonomische Modellierung",
+    edu2_degree: "Reifezeugnis (AHS Matura)",
+    edu2_school: "Österreichische Schule Prag",
     edu2_focus:  "Spezialisierung: Geschichte und Mathematik",
 
     exp1_title: "Spezialist für Auftragsmanagement",
-    exp1_b1: "Verwaltung umfangreicher B2B-Auftragsflüsse unter Einhaltung interner Logistikprotokolle und Lieferfristen.",
-    exp1_b2: "Implementierung eines Projekts zur automatisierten Auftragsbestätigung, was manuelle Fehler deutlich reduzierte und die Datenintegrität verbesserte.",
-    exp1_b3: "Durchführung von Leistungsbewertungen für Werbekampagnen mit Fokus auf datengestütztes Berichtswesen.",
+    exp1_b1: "Verantwortung für großvolumige B2B-Bestellflüsse unter Einhaltung interner Logistikprotokolle und Lieferfristen.",
+    exp1_b2: "Implementierung eines Projekts zur automatisierten Auftragsbestätigung, was manuelle Fehler signifikant reduzierte und die Datenintegrität verbesserte.",
+    exp1_b3: "Durchführung von Leistungsbewertungen für Werbekampagnen mit Fokus auf datengestütztes Reporting.",
 
-    exp2_title: "Spezialist für Kundenerfahrung",
-    exp2_b1: "Bearbeitung eines hohen Aufkommens an Kundenanfragen und Entwicklung effizienter Problemlösungsstrategien in einem schnelllebigen Umfeld.",
-    exp2_b2: "Sicherstellung hoher Zufriedenheitsniveaus durch sorgfältige Detailgenauigkeit und Einhaltung der Unternehmensservicestandards.",
+    exp2_title: "Spezialist für Customer Experience",
+    exp2_b1: "Bearbeitung zahlreicher Kundenanfragen und Entwicklung effizienter Problemlösungsstrategien in einem dynamischen Umfeld.",
+    exp2_b2: "Sicherstellung hoher Kundenzufriedenheit durch Detailgenauigkeit und Einhaltung von Servicestandards.",
 
-    exp3_title: "Rezeptionist (Front Office)",
-    exp3_b1: "Abwicklung von Ein- und Auscheckvorgängen, Gästeabrechnung und Reservierungsmanagement für internationale Gäste.",
-    exp3_b2: "Versierter Einsatz von Cloudbeds und Oracle OPERA für Zimmerverwaltung, Gastprofile und Finanzberichterstattung.",
-    exp3_b3: "Abstimmung täglicher Transaktionen (Nachtaudit) und Verwaltung des Lobby-Bars sowie POS-Transaktionen.",
+    exp3_title:   "Rezeptionist im Front Office",
+    exp3_company: "Hotel Anette, Prag",
+    exp3_b1: "Durchführung von Check-ins/outs, Gästenabrechnungen und Reservierungsmanagement für internationale Gäste.",
+    exp3_b2: "Sicherer Umgang mit Cloudbeds und Oracle OPERA für Zimmerkontingente, Gästeprofile und Finanzberichte.",
+    exp3_b3: "Durchführung des Tagesabschlusses (Night Audit) sowie Betreuung des Lobby-Bar-Services und Kassenvorgänge.",
 
     lng_russian: "Russisch",
     lng_czech:   "Tschechisch",
@@ -679,7 +691,9 @@ const translations = {
 
     sl_advanced:   "Fortgeschritten",
     sl_proficient: "Versiert",
-    sl_basic:      "Grundkenntnisse",
+    sl_basic_1:    "Grundkenntnisse",
+    sl_basic_2:    "Grundkenntnisse",
+    sl_basic_3:    "Grundkenntnisse",
 
     contact_location: "Wien, Österreich",
   },
@@ -687,33 +701,35 @@ const translations = {
   cs: {
     nav_bio:     "Bio",
     nav_edu:     "Vzdělání",
-    nav_exp:     "Zkušenosti",
+    nav_exp:     "Pracovní zkušenosti",
     nav_lang:    "Jazyky",
-    nav_skills:  "Dovednosti",
+    nav_skills:  "Technické dovednosti",
     nav_contact: "Kontakt",
 
-    role:        "Student ekonomie a podnikání",
-    bio_heading: "Profesní profil",
-    bio_text:    "Bakalářský student na WU Vídeň s více než 2 lety praktických zkušeností v nadnárodním podnikovém prostředí. Velmi se zajímám o finanční modelování, statistiku a kvantitativní finance. Prokázané výsledky v automatizaci procesů a řízení složitých B2B operací s vysokou přesností.",
+    role:        "Student hospodářských věd a ekonomie",
+    bio_heading: "Profesní shrnutí",
+    bio_text:    "Student bakalářského studia na Vídeňské univerzitě ekonomie a obchodní administrativy (WU Wien) s více než dvouletou praxí v mezinárodním korporátním prostředí. Hluboký zájem o finanční modelování, statistiku a kvantitativní finance. Prokazatelné výsledky v oblasti automatizace procesů a precizního řízení komplexních B2B operací.",
 
-    edu1_degree: "Bakalář v oboru Obchod & Ekonomie",
+    edu1_degree: "Bakalář v oboru Business & Economics",
     edu1_focus:  "Zaměření: Makrofinance a ekonomické modelování",
-    edu2_degree: "Maturitní vysvědčení (AHS Matura)",
+    edu2_degree: "Maturitní vysvědčení",
+    edu2_school: "Rakouské gymnázium v Praze",
     edu2_focus:  "Specializace: Dějepis a matematika",
 
-    exp1_title: "Specialista na správu objednávek",
-    exp1_b1: "Správa rozsáhlých B2B toků objednávek při dodržování interních logistických protokolů a termínů dodání.",
-    exp1_b2: "Realizace projektu automatizovaného potvrzování objednávek, který výrazně snížil počet manuálních chyb a zlepšil integritu dat.",
-    exp1_b3: "Provádění hodnocení výkonnosti propagačních kampaní se zaměřením na datově řízené reportování.",
+    exp1_title: "Specialista správy objednávek (Order Management Specialist)",
+    exp1_b1: "Správa rozsáhlých B2B toků objednávek při zajištění souladu s interními logistickými protokoly a dodacími termíny.",
+    exp1_b2: "Implementace projektu pro automatizované potvrzování objednávek, což vedlo k výraznému snížení manuálních chyb a zlepšení integrity dat.",
+    exp1_b3: "Provádění analýz výkonnosti reklamních kampaní se zaměřením na reportování založené na datech.",
 
-    exp2_title: "Specialista na zákaznickou zkušenost",
+    exp2_title: "Specialista zákaznické zkušenosti (Customer Experience Specialist)",
     exp2_b1: "Vyřizování velkého objemu zákaznických dotazů a vývoj efektivních strategií řešení problémů v dynamickém prostředí.",
-    exp2_b2: "Zajištění vysoké míry spokojenosti zákazníků prostřednictvím pečlivé pozornosti k detailům a dodržování firemních standardů.",
+    exp2_b2: "Zajišťování vysoké úrovně spokojenosti skrze pečlivost a dodržování servisních standardů společnosti.",
 
-    exp3_title: "Recepční (Front Office)",
-    exp3_b1: "Odbavování příjezdů a odjezdů hostů, fakturace a správa rezervací pro mezinárodní klientelu.",
-    exp3_b2: "Zkušená práce se systémy Cloudbeds a Oracle OPERA pro správu pokojů, profilů hostů a finančních výkazů.",
-    exp3_b3: "Odsouhlasení denních transakcí (noční audit) a provoz lobby baru včetně POS transakcí.",
+    exp3_title:   "Recepční",
+    exp3_company: "Hotel Anette, Praha",
+    exp3_b1: "Zajišťování příjezdů a odjezdů hostů (check-in/out), fakturace a správa rezervací pro mezinárodní klientelu.",
+    exp3_b2: "Pokročilé využití systémů Cloudbeds a Oracle OPERA pro správu pokojové kapacity, profilů hostů a finanční reporting.",
+    exp3_b3: "Provádění denních uzávěrek (night audit) a obsluha lobby baru včetně správy pokladních transakcí.",
 
     lng_russian: "Ruština",
     lng_czech:   "Čeština",
@@ -721,8 +737,10 @@ const translations = {
     lng_german:  "Němčina",
 
     sl_advanced:   "Pokročilý",
-    sl_proficient: "Zdatný",
-    sl_basic:      "Základní",
+    sl_proficient: "Zkušený",
+    sl_basic_1:    "Základy",
+    sl_basic_2:    "Základy",
+    sl_basic_3:    "Základy",
 
     contact_location: "Vídeň, Rakousko",
   },
@@ -735,9 +753,7 @@ function setLang(lang) {
     if (t[key] !== undefined) el.textContent = t[key];
   });
   document.documentElement.lang = lang;
-  document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.classList.toggle("active", btn.textContent.toLowerCase() === lang);
-  });
+  document.getElementById("langSelect").value = lang;
 }
 </script>
 </body>
