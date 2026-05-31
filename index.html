@@ -242,6 +242,43 @@
     .edu-card .dates   { color: var(--muted); font-size: .8rem; margin-bottom: .6rem; }
     .edu-card .focus   { color: #cdd9e5; font-size: .85rem; }
 
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1.2rem;
+    }
+
+    .tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .78rem;
+      padding: .3rem .8rem;
+      border-radius: 20px;
+    }
+
+    .proj-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      margin-top: 1.2rem;
+      padding: .5rem 1rem;
+      background: rgba(88,166,255,.12);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      color: var(--accent);
+      font-size: .82rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+
+    .proj-link:hover {
+      background: rgba(88,166,255,.22);
+      transform: translateY(-2px);
+    }
+
     /* ── TIMELINE ── */
     .timeline {
       position: relative;
@@ -411,6 +448,7 @@
     <li><a href="#bio"        data-i18n="nav_bio">Bio</a></li>
     <li><a href="#education"  data-i18n="nav_edu">Education</a></li>
     <li><a href="#experience" data-i18n="nav_exp">Experience</a></li>
+    <li><a href="#projects"   data-i18n="nav_projects">Projects</a></li>
     <li><a href="#languages"  data-i18n="nav_lang">Languages</a></li>
     <li><a href="#skills"     data-i18n="nav_skills">Skills</a></li>
     <li><a href="#contact"    data-i18n="nav_contact">Contact</a></li>
@@ -515,6 +553,35 @@
     </div>
   </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-title">📊 <span data-i18n="nav_projects">Projects</span></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="degree" data-i18n="proj1_title">Quantitative Methods II — Case Study</div>
+        <div class="school" data-i18n="proj1_meta">WU – Wirtschaftsuniversität Wien · Group B3, Course 4902</div>
+        <div class="dates">05/2026</div>
+        <div class="focus" data-i18n="proj1_desc">
+          A two-part quantitative study in R. Case I prices a leveraged barrier
+          certificate with a Monte Carlo simulation, analysing estimator variance,
+          convergence and Value-at-Risk. Case II is a statistical analysis of a
+          lifestyle &amp; sleep-quality dataset, covering descriptive statistics,
+          group comparisons, correlation, hypothesis tests and confidence intervals.
+        </div>
+        <div class="tag-row">
+          <span class="tag">R</span>
+          <span class="tag">Monte Carlo</span>
+          <span class="tag">Hypothesis Testing</span>
+          <span class="tag">Confidence Intervals</span>
+          <span class="tag">Value at Risk</span>
+        </div>
+        <a class="proj-link" href="QM-II_Case_Study_2026_Group_B3.pdf" target="_blank">
+          <i class="fas fa-file-pdf"></i> <span data-i18n="proj_link">View full report</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- LANGUAGES -->
   <section id="languages">
     <div class="section-title">🌐 <span data-i18n="nav_lang">Languages</span></div>
@@ -608,9 +675,15 @@ const translations = {
     nav_bio:     "Bio",
     nav_edu:     "Education",
     nav_exp:     "Experience",
+    nav_projects:"Projects",
     nav_lang:    "Languages",
     nav_skills:  "Skills",
     nav_contact: "Contact",
+
+    proj1_title: "Quantitative Methods II — Case Study",
+    proj1_meta:  "WU – Wirtschaftsuniversität Wien · Group B3, Course 4902",
+    proj1_desc:  "A two-part quantitative study in R. Case I prices a leveraged barrier certificate with a Monte Carlo simulation, analysing estimator variance, convergence and Value-at-Risk. Case II is a statistical analysis of a lifestyle & sleep-quality dataset, covering descriptive statistics, group comparisons, correlation, hypothesis tests and confidence intervals.",
+    proj_link:   "View full report",
 
     role:        "Business & Economics Student",
     bio_heading: "Professional Summary",
@@ -655,9 +728,15 @@ const translations = {
     nav_bio:     "Bio",
     nav_edu:     "Ausbildung",
     nav_exp:     "Berufserfahrung",
+    nav_projects:"Projekte",
     nav_lang:    "Sprachen",
     nav_skills:  "Technische Kenntnisse",
     nav_contact: "Kontakt",
+
+    proj1_title: "Quantitative Methoden II — Fallstudie",
+    proj1_meta:  "WU – Wirtschaftsuniversität Wien · Gruppe B3, Kurs 4902",
+    proj1_desc:  "Eine zweiteilige quantitative Studie in R. Fall I bewertet ein Leveraged Barrier Certificate mittels Monte-Carlo-Simulation und analysiert Schätzervarianz, Konvergenz und Value-at-Risk. Fall II ist eine statistische Analyse eines Datensatzes zu Lebensstil & Schlafqualität mit deskriptiver Statistik, Gruppenvergleichen, Korrelation, Hypothesentests und Konfidenzintervallen.",
+    proj_link:   "Vollständigen Bericht ansehen",
 
     role:        "Student der Betriebswirtschaft & Volkswirtschaft",
     bio_heading: "Professionelles Profil",
@@ -702,9 +781,15 @@ const translations = {
     nav_bio:     "Bio",
     nav_edu:     "Vzdělání",
     nav_exp:     "Pracovní zkušenosti",
+    nav_projects:"Projekty",
     nav_lang:    "Jazyky",
     nav_skills:  "Technické dovednosti",
     nav_contact: "Kontakt",
+
+    proj1_title: "Kvantitativní metody II — Případová studie",
+    proj1_meta:  "WU – Wirtschaftsuniversität Wien · Skupina B3, Kurz 4902",
+    proj1_desc:  "Dvoudílná kvantitativní studie v jazyce R. Případ I oceňuje pákový bariérový certifikát pomocí simulace Monte Carlo a analyzuje rozptyl odhadu, konvergenci a Value-at-Risk. Případ II je statistická analýza datové sady o životním stylu a kvalitě spánku, zahrnující popisnou statistiku, porovnání skupin, korelaci, testování hypotéz a intervaly spolehlivosti.",
+    proj_link:   "Zobrazit celou zprávu",
 
     role:        "Student hospodářských věd a ekonomie",
     bio_heading: "Profesní shrnutí",
