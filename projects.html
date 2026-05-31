@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects · Vsevolod Stepanov</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="brand" href="index.html">Vsevolod Stepanov</a>
+  <ul>
+    <li><a href="index.html#bio"        data-i18n="nav_bio">Bio</a></li>
+    <li><a href="index.html#education"  data-i18n="nav_edu">Education</a></li>
+    <li><a href="index.html#experience" data-i18n="nav_exp">Experience</a></li>
+    <li><a href="projects.html" class="active" data-i18n="nav_projects">Projects</a></li>
+    <li><a href="index.html#languages"  data-i18n="nav_lang">Languages</a></li>
+    <li><a href="index.html#skills"     data-i18n="nav_skills">Skills</a></li>
+    <li><a href="index.html#contact"    data-i18n="nav_contact">Contact</a></li>
+  </ul>
+  <div class="lang-wrap">
+    <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
+      <option value="en">EN</option>
+      <option value="de">DE</option>
+      <option value="cs">CS</option>
+    </select>
+  </div>
+</nav>
+
+<div class="container">
+  <section id="projects" style="border-top:none;">
+    <div class="section-title">📊 <span data-i18n="nav_projects">Projects</span></div>
+    <p class="proj-lead" data-i18n="proj_lead">
+      Selected academic work from my studies at WU Wien. Each entry links to the full written report.
+    </p>
+
+    <article class="proj-article">
+      <div class="proj-h" data-i18n="proj1_title">Quantitative Methods II — Case Study</div>
+      <div class="proj-meta" data-i18n="proj1_meta">WU – Wirtschaftsuniversität Wien · Group B3, Course 4902</div>
+      <div class="proj-date">05/2026</div>
+
+      <p class="proj-p" data-i18n="proj1_intro">
+        A four-person group project for the Quantitative Methods II course, carried out entirely in R.
+        The brief consisted of two independent cases — one in computational finance, one in applied
+        statistics — each requiring reproducible R code, careful interpretation of the output, and a
+        formal written report.
+      </p>
+
+      <div class="proj-sub" data-i18n="proj1_case1_h">Case I — Monte Carlo Valuation of a Leveraged Barrier Certificate</div>
+      <p class="proj-p" data-i18n="proj1_case1_p">
+        We estimated the fair value of a structured product whose payoff has no closed-form solution.
+        Starting from 1,260 historical prices, we computed daily log-returns and estimated the drift and
+        volatility of the underlying asset. We then simulated tens of thousands of possible year-end
+        prices under a log-normal model, applied the certificate's payoff rule (a leveraged gain above
+        the barrier, a fixed rebate below it), and approximated the value as the mean simulated payoff.
+        We quantified the precision of that estimate through its variance and standard error, and showed
+        empirically that the error decreases at a 1/n rate across sample sizes from 100 to 100,000 —
+        connecting the result to the Central Limit Theorem. Finally, we computed investor risk metrics,
+        including expected profit/loss and the 5% Value-at-Risk.
+      </p>
+
+      <div class="proj-sub" data-i18n="proj1_case2_h">Case II — Lifestyle &amp; Sleep-Quality Analysis</div>
+      <p class="proj-p" data-i18n="proj1_case2_p">
+        Using a dataset of 374 individuals, we produced a full descriptive analysis — distributions,
+        frequency tables and visualisations — and then examined the relationships within the data. We
+        compared sleep quality and stress across occupations and genders, built contingency tables of
+        sleep disorders, and found a strong negative correlation (r ≈ −0.9) between stress and sleep
+        quality. We formally tested two claims made by a sleep doctor using a one-sample proportion test
+        and a one-sample t-test, rejecting both at the 5% level. Finally, we compared mean sleep duration
+        and age across the three sleep-disorder categories using 99% confidence intervals to identify
+        which group differences were statistically significant.
+      </p>
+
+      <a class="proj-link" href="QM-II_Case_Study_2026_Group_B3.pdf" target="_blank">
+        <i class="fas fa-file-pdf"></i> <span data-i18n="proj_link">View full report</span>
+      </a>
+    </article>
+  </section>
+</div>
+
+<footer>
+  &copy; 2026 Vsevolod Stepanov
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
