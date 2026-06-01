@@ -198,6 +198,7 @@ nav ul a.active { color: var(--accent); }
 section {
   padding: 3rem 0;
   border-top: 1px solid var(--border);
+  scroll-margin-top: 70px;
 }
 
 .section-title {
